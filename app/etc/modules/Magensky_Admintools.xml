@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+     <modules>
+        <Magensky_Admintools>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Magensky_Admintools>
+    </modules>
+</config>

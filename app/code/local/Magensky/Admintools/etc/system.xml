@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <!--Here is the tabs definition-->
+        <magensky translate="label" module="admintools">
+            <label>MAGENSKY.COM</label>
+            <sort_order>100</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+        </magensky>
+    </tabs>
+    <sections>
+		<admintools translate="label" module="admintools">
+			<class>separator-top</class>
+            <label>Admin Tools</label>
+            <tab>magensky</tab>
+            <sort_order>10</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>				
+                <template_path_hint translate="label">
+                    <label>Show Template Path Hint</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+						<active translate="label">
+                            <label>Active</label>
+                            <comment></comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+                        </active>
+                        <show_block translate="label">
+                            <label>Show Block Name</label>
+                            <comment></comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </show_block>
+                        <code translate="label">
+                            <label>Code</label>
+                            <comment>You can show template path hint by add code as a param to url (?tp=show)</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </code>
+					</fields>
+				</template_path_hint>
+			</groups>
+		</admintools>
+	</sections>
+</config>

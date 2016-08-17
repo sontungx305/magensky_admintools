@@ -1,0 +1,6 @@
+#<link target>           <link location>
+app/code/local/Magensky/Admintools/	app/code/local/Magensky/Admintools/
+app/design/adminhtml/default/default/layout/*	app/design/adminhtml/default/default/layout/
+#app/design/adminhtml/default/default/template/admintools/* app/design/adminhtml/default/default/template/admintools/
+app/etc/modules/*	app/etc/modules/
+app/locale/en_US/Magensky_Admintools.csv	app/locale/en_US/Magensky_Admintools.csv
