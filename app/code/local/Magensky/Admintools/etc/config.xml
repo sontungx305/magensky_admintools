@@ -43,6 +43,14 @@
             <admintools>
                 <class>Magensky_Admintools_Block</class>
             </admintools>
+            <adminhtml>
+                <rewrite>
+                    <sales_order_grid>Magensky_Admintools_Block_Adminhtml_Sales_Order_Grid</sales_order_grid>
+                </rewrite>
+                <rewrite>
+                    <sales_order_view>Magensky_Admintools_Block_Adminhtml_Sales_Order_View</sales_order_view>
+                </rewrite>
+            </adminhtml>
         </blocks>
         <helpers>
             <admintools>
@@ -130,6 +138,17 @@
             </resources>
         </acl>
     </adminhtml>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <magensky_admintools before="Mage_Adminhtml">Magensky_Admintools_Adminhtml</magensky_admintools>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
     <default>
 		<admintools>
             <template_path_hint>
