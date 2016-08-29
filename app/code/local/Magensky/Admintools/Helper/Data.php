@@ -26,6 +26,9 @@ class Magensky_Admintools_Helper_Data extends Mage_Core_Helper_Abstract
 	public function isPathHintActive() {
 		return $this->getConfig('template_path_hint','active');
 	}
+	public function isDeleteOrderActive() {
+		return $this->getConfig('order_manager','active');
+	}
 	public function getConfig($group, $field)
 	{
 		return Mage::getStoreConfig('admintools/' . $group . '/' . $field, Mage::app()->getStore());

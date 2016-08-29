@@ -35,7 +35,7 @@ class Magensky_Admintools_Adminhtml_DeleteorderController extends Mage_Adminhtml
 	}
 	public function deleteAction() {
         $order_id = $this->getRequest()->getParam("order_id");
-        if(!empty($order_id)) {
+        if(!empty($order_id) && Mage::helper('admintools')->isDeleteOrderActive()) {
             $increment_id = Mage::getModel('sales/order')->load($order_id)->getRealOrderId();
             if($this->_delete($order_id)) {
                 Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('admintools')->__(
@@ -47,30 +47,32 @@ class Magensky_Admintools_Adminhtml_DeleteorderController extends Mage_Adminhtml
 	}
     public function massDeleteAction() {
        $order_ids = $this->getRequest()->getParam("order_ids");
-        if(is_array($order_ids)){
-            try {
-                $_delete_total = 0;
-                $_cannot_delete = '';
-                foreach($order_ids as $order_id) {
-                    if($this->_delete($order_id)){
-                        $_delete_total++;
-                    }else {
-                        $_cannot_delete .= $order_id.', ';
+        if(Mage::helper('admintools')->isDeleteOrderActive()) {
+            if(is_array($order_ids)){
+                try {
+                    $_delete_total = 0;
+                    $_cannot_delete = '';
+                    foreach($order_ids as $order_id) {
+                        if($this->_delete($order_id)){
+                            $_delete_total++;
+                        }else {
+                            $_cannot_delete .= $order_id.', ';
+                        }
                     }
-                }
-                Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('admintools')->__(
-                    'Total of %d record(s) were successfully deleted', $_delete_total
-                ));
-                if(!empty($_cannot_delete)) {
-                    Mage::getSingleton('adminhtml/session')->addError(Mage::helper('admintools')->__(
-                        'Can\'t delete those record(s) : %s', $_cannot_delete
+                    Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('admintools')->__(
+                        'Total of %d record(s) were successfully deleted', $_delete_total
                     ));
+                    if(!empty($_cannot_delete)) {
+                        Mage::getSingleton('adminhtml/session')->addError(Mage::helper('admintools')->__(
+                            'Can\'t delete those record(s) : %s', $_cannot_delete
+                        ));
+                    }
+                } catch (Exception $e) {
+                    Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
                 }
-            } catch (Exception $e) {
-                Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
+            }else {
+                Mage::getSingleton('adminhtml/session')->addError(Mage::helper('adminhtml')->__('Please select item(s)'));
             }
-        }else {
-            Mage::getSingleton('adminhtml/session')->addError(Mage::helper('adminhtml')->__('Please select item(s)'));
         }
         $this->_redirectUrl(Mage::helper('adminhtml')->getUrl('adminhtml/sales_order/index'));
     }

@@ -23,12 +23,14 @@
     public function  __construct() {
 
         parent::__construct();
-		$message = Mage::helper('sales')->__('Are you sure you want to delete this order?');
-        $this->_addButton('button_id', array(
-            'label'     => Mage::helper('Sales')->__('Delete Order'),
-            'onclick'   => 'deleteConfirm(\''.$message.'\', \'' . $this->getDeleteUrl() . '\')',
-            'class'     => 'go'
-        ), 0, 100, 'header', 'header');
+        if(Mage::helper('admintools')->isDeleteOrderActive()) {
+            $message = Mage::helper('sales')->__('Are you sure you want to delete this order?');
+            $this->_addButton('button_id', array(
+                'label'     => Mage::helper('Sales')->__('Delete Order'),
+                'onclick'   => 'deleteConfirm(\''.$message.'\', \'' . $this->getDeleteUrl() . '\')',
+                'class'     => 'go'
+            ), 0, 100, 'header', 'header');
+        }
     }
 	
     public function getDeleteUrl()
